@@ -1,27 +1,57 @@
-# Parser
+<p align="center">
+  <a href="">
+    <img alt="docsify" src="https://user-images.githubusercontent.com/4659608/190292887-ac6482d9-dc0c-4534-b032-4d704a0322be.png">
+  </a>
+</p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+<p align="center">
+  A Powerful Dynamic Forms.
+</p>
 
-## Development server
+<p align="center">
+  <a href="https://github.com/alhazmy13/godzilla/issues"><img alt="Github issues" src="https://img.shields.io/github/issues-raw/alhazmy13/godizlla?style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/@godzilla/core"><img alt="npm" src="https://img.shields.io/npm/v/@godzilla-forms/core?label=npm%2Fcore&style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/@godzilla/core"><img alt="npm" src="https://img.shields.io/npm/v/@godzilla-forms/parser?label=npm%2Fparser&style=flat-square"></a>
+  <img alt="Framework" src="https://img.shields.io/badge/Freamwork-Angular-brightgreen?style=flat-square"> 
+  <img alt="Framework" src="https://img.shields.io/badge/Freamwork-React|WIP-blue?style=flat-square">
+  <img alt="Framework" src="https://api.netlify.com/api/v1/badges/d4f3a8cf-f3aa-404c-86f6-bfa3b95ebb59/deploy-status">
+</p>
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+<p align="center">Godzilla is built-in ready form elements and templates; just focus on your Business logic and let Godzilla handle the
+forms.</p>
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Links
 
-## Build
+- [Documentation](https://doc.godzilla-forms.io)
+- [Form Builder](https://godzilla-forms.io)
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## Features
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+- Generate dynamic forms as json
+- Built over the bootstrap framework
+- User friendly builder
+- Angular and React(WIP) parser to convert from json as component
+- Fully customizable
+- Support Localization (WIP)
+- Custom flow for form elements
 
-## Running end-to-end tests
+## Contributing
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- Fork it!
+- Create your feature branch: `git checkout -b my-new-feature`
+- Commit your changes: `git add . && git commit -m 'Add some feature'`
+- Push to the branch: `git push origin my-new-feature`
+- Submit a pull request
 
-## Further help
+## Development
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+```bash
+TODO
+```
+
+
+## License
+
+[MIT](LICENSE)
