@@ -1,0 +1,55 @@
+{
+  "name": "@godzilla-forms/parser",
+  "version": "0.0.5",
+  "description": "Godzilla Forms parser library for angular",
+  "private": false,
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "scripts": {
+    "build": "ng build godzilla-forms-parser",
+    "watch": "ng build godzilla-forms-parser --configuration development --watch",
+    "test": "ng build godzilla-forms-parser",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "Godzilla",
+    "Form Builder"
+  ],
+  "author": "Abdullah Alhazmy",
+  "email": "me@alhazmy13.net",
+  "license": "MIT",
+  "homepage": "https://github.com/alhazmy13/godzilla#readme",
+  "bugs": {
+    "url": "https://github.com/alhazmy13/godzilla/issues"
+  },
+  "peerDependencies": {
+    "@angular/common": "^14.0.0",
+    "@angular/core": "^14.0.0",
+    "@angular/forms": "^14.0.0",
+    "@godzilla-forms/core": "file:../../core"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "^14.2.3",
+    "@angular/cli": "~14.2.1",
+    "@angular/compiler-cli": "^14.0.0",
+    "@types/jasmine": "~4.0.0",
+    "jasmine-core": "~4.3.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.1.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.0.0",
+    "ng-packagr": "^14.2.0",
+    "typescript": "~4.7.2"
+  },
+
+  "module": "dist/fesm2015/godzilla-forms-parser.mjs",
+  "es2020": "dist/fesm2020/godzilla-forms-parser.mjs",
+  "esm2020": "dist/esm2020/godzilla-forms-parser.mjs",
+  "fesm2020": "dist/fesm2020/godzilla-forms-parser.mjs",
+  "fesm2015": "dist/fesm2015/godzilla-forms-parser.mjs",
+  "typings": "dist/index.d.ts"
+}
