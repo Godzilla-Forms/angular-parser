@@ -86,20 +86,6 @@ export class GodzillaFormsParserComponent implements OnChanges {
   }
 
 
-  /**
-   * Internal function to update the status of checkbox,
-   * This function is workaround since reactive form cannot update the status of checkbox
-   * @param item: GodzillaFormControls
-   * @param event: input event as row value
-   * @private
-   */
-  _changeStatus(item: GodzillaFormControls, event: any) {
-    if (item.type !== GodzillaItemTypes.checkbox) {
-      return
-    }
-    let _controller = this._getFormController(item);
-    _controller.setValue(event.target.checked);
-  }
 
   /**
    * Internal function to build the dynamic form

@@ -1,9 +1,15 @@
 import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { GodzillaFormsParserComponent } from './components/form-parser.component';
 import { GodzillaLoaderService } from './utils/services/loader.service';
 import { GODZILLA_OPTIONS, GodzillaOptions } from './utils/factory';
+import { GodzillaFormsParserComponent } from './components';
+import {
+  InputControllerComponent,
+  SelectControllerComponent,
+  TextareaControllerComponent,
+  UploadControllerComponent
+} from './components/controller';
 
 
 @NgModule({
@@ -13,8 +19,11 @@ import { GODZILLA_OPTIONS, GodzillaOptions } from './utils/factory';
     ReactiveFormsModule
   ],
   declarations: [
-    GodzillaFormsParserComponent
-
+    GodzillaFormsParserComponent,
+    SelectControllerComponent,
+    TextareaControllerComponent,
+    InputControllerComponent,
+    UploadControllerComponent
   ],
   exports: [
     GodzillaFormsParserComponent

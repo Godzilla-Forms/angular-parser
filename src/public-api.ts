@@ -3,6 +3,6 @@
  */
 
 export * from './parser.module';
-export * from './components/form-parser.component';
+export * from './components';
 export * from './utils/factory';
 export * from './utils/controller';

@@ -1,0 +1,19 @@
+<ng-container [formGroup]='form'>
+  <input
+    [class]="control.type === 'checkbox' ? 'form-check-input' : 'form-control'"
+    [class.form-control-color]="control.type === 'color'"
+    [id]='control.id'
+    [type]='control.type'
+    [formControlName]='control.id'
+    (change)='_changeStatus(control,$event)'
+    [placeholder]='control.placeholder'
+    [attr.hidden]="control.options?.hidden== true ? '' : null"
+    [attr.disabled]="control.options?.disabled == true ? '' : null"
+    [attr.required]="control.validators?.required == true ? '' : null"
+    [max]='control.validators?.max ? control.validators?.max : null'
+    [min]='control.validators?.min ? control.validators?.min : null'
+    [maxlength]='control.validators  && control.validators.maxLength ? control.validators.maxLength: null'
+    [minlength]='control.validators  && control.validators.minLength ? control.validators.minLength: null'
+    [checked]='control.value.defaultValue'
+    [ngClass]="{ 'is-invalid': submitted && form.get(controlName)!!.invalid }" />
+</ng-container>

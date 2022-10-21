@@ -1,0 +1,14 @@
+<ng-container [formGroup]='form'>
+  <select class='form-select'
+          [id]='control.id'
+          [formControlName]='controlName'
+          [value]='control.value.defaultValue'
+          [attr.hidden]="control.options?.hidden== true ? '' : null"
+          [attr.disabled]="control.options?.disabled == true ? '' : null"
+          [ngClass]="{ 'is-invalid': submitted && form.get(controlName)!!.invalid }"
+          [attr.required]="control.validators?.required == true ? '' : null">
+    <option *ngFor='let option of control.value.valueOptions'
+            [value]='option.value'
+            [selected]='control.value.defaultValue == option.value'>{{option.label}}</option>
+  </select>
+</ng-container>

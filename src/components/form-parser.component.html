@@ -1,83 +1,53 @@
-<div [formGroup]="form" class="row">
-  <div [class.form-floating]="control.style?.floating"
-       *ngFor="let control of jsonForm"
-       [class]="_getCssClass(control)">
-    <div *ngIf="_isFlowValid(control)" [class.form-check]="control.type === 'checkbox'">
+<div [formGroup]='form' class='row'>
+  <div [class.form-floating]='control.style?.floating'
+       *ngFor='let control of jsonForm'
+       [class]='_getCssClass(control)'>
+    <div *ngIf='_isFlowValid(control)' [class.form-check]="control.type === 'checkbox'">
       <ng-container
         *ngTemplateOutlet="_labelPosition(control) ==  'top'? label : empty; context: {$implicit: control, label: control.label}">
       </ng-container>
-      <ng-container *ngTemplateOutlet="heading; context: {$implicit: control}"></ng-container>
-      <input
+      <ng-container *ngTemplateOutlet='heading; context: {$implicit: control}'></ng-container>
+      <godzilla-forms-input-controller
         *ngIf="
         ['text', 'password', 'email',
          'number', 'search', 'tel',
          'checkbox', 'url', 'color'].includes(control.type)"
-        [class]="control.type === 'checkbox' ? 'form-check-input' : 'form-control'"
-        [class.form-control-color]="control.type === 'color'"
-        [id]="control.id"
-        [type]="control.type"
-        [formControlName]="control.id"
-        (change)="_changeStatus(control,$event)"
-        [placeholder]="control.placeholder"
-        [attr.hidden]="control.options?.hidden== true ? '' : null"
-        [attr.disabled]="control.options?.disabled == true ? '' : null"
-        [attr.required]="control.validators?.required == true ? '' : null"
-        [max]="control.validators?.max ? control.validators?.max : null"
-        [min]="control.validators?.min ? control.validators?.min : null"
-        [maxlength]="control.validators  && control.validators.maxLength ? control.validators.maxLength: null"
-        [minlength]="control.validators  && control.validators.minLength ? control.validators.minLength: null"
-        [checked]="control.value.defaultValue"
-        [ngClass]="{ 'is-invalid': _submitted && _getFormController(control).invalid }"/>
-
-      <textarea
-        class="form-control"
-        *ngIf="control.type === 'textarea'"
-        [formControlName]="control.id"
-        [id]="control.id"
-        [value]="control.value.defaultValue"
-        [placeholder]="control.placeholder"
-        [attr.hidden]="control.options?.hidden== true ? '' : null"
-        [attr.disabled]="control.options?.disabled == true ? '' : null"
-        [ngClass]="{ 'is-invalid': _submitted && _getFormController(control).invalid }"
-        [attr.required]="control.validators?.required == true ? '' : null"
-      ></textarea>
-
-      <select class="form-select"
-              *ngIf="control.type == 'dropdown'"
-              [id]="control.id"
-              [formControlName]="control.id"
-              [value]="control.value.defaultValue"
-              [attr.hidden]="control.options?.hidden== true ? '' : null"
-              [attr.disabled]="control.options?.disabled == true ? '' : null"
-              [ngClass]="{ 'is-invalid': _submitted && _getFormController(control).invalid }"
-              [attr.required]="control.validators?.required == true ? '' : null">
-        <option *ngFor="let option of control.value.valueOptions"
-                [value]="option.value"
-                [selected]="control.value.defaultValue == option.value">{{option.label}}</option>
-      </select>
-
+        [control]='control'
+        [submitted]='_submitted'
+        [controlName]='control.id'></godzilla-forms-input-controller>
+      <godzilla-forms-textarea-controller *ngIf="control.type == 'textarea'"
+                                          [control]='control'
+                                          [submitted]='_submitted'
+                                          [controlName]='control.id'></godzilla-forms-textarea-controller>
+      <godzilla-forms-select-controller *ngIf="control.type == 'dropdown'"
+                                        [control]='control'
+                                        [submitted]='_submitted'
+                                        [controlName]='control.id'></godzilla-forms-select-controller>
+      <godzilla-forms-upload-controller *ngIf="control.type === 'upload'"
+                                        [control]='control'
+                                        [controlName]='control.id'></godzilla-forms-upload-controller>
       <ng-template [ngIf]="control.type=== 'radio'">
-        <div *ngFor="let radio of control.value.valueOptions" class="form-check">
+        <div *ngFor='let radio of control.value.valueOptions' class='form-check'>
           <input
-            class="form-check-input"
-            type="radio"
-            [id]="control.id"
-            [formControlName]="control.id"
-            [value]="radio.value"
+            class='form-check-input'
+            type='radio'
+            [id]='control.id'
+            [formControlName]='control.id'
+            [value]='radio.value'
             [attr.hidden]="control.options?.hidden== true ? '' : null"
             [attr.disabled]="control.options?.disabled == true ? '' : null"
             [ngClass]="{ 'is-invalid': _submitted && _getFormController(control).invalid }"
             [attr.required]="control.validators?.required == true ? '' : null"
-            [checked]="radio.value === control.value.defaultValue"/>
+            [checked]='radio.value === control.value.defaultValue' />
           <ng-container
-            *ngTemplateOutlet="label; context: {$implicit: control, label: radio.label, ignoreRequired: true}">
+            *ngTemplateOutlet='label; context: {$implicit: control, label: radio.label, ignoreRequired: true}'>
           </ng-container>
         </div>
       </ng-template>
       <ng-container
         *ngTemplateOutlet="_labelPosition(control) == 'bottom'? label : empty; context: {$implicit: control, label: control.label}">
       </ng-container>
-      <ng-container *ngTemplateOutlet="errors; context: {$implicit: control}"></ng-container>
+      <ng-container *ngTemplateOutlet='errors; context: {$implicit: control}'></ng-container>
     </div>
   </div>
 </div>
@@ -85,10 +55,10 @@
 
 <!--Label Template-->
 
-<ng-template #label let-control let-label="label" let-ignoreRequired="ignoreRequired">
-  <label [for]="control.id" *ngIf="label !== ''"
-         [hidden]="control.options?.hidden== undefined ? false : control.options?.hidden"
-         [class.required]="control?.validators?.required == undefined || ignoreRequired == true ? false : control.validators?.required"
+<ng-template #label let-control let-label='label' let-ignoreRequired='ignoreRequired'>
+  <label [for]='control.id' *ngIf="label !== ''"
+         [hidden]='control.options?.hidden== undefined ? false : control.options?.hidden'
+         [class.required]='control?.validators?.required == undefined || ignoreRequired == true ? false : control.validators?.required'
          [class.form-check-label]="control.type === 'checkbox'">
     {{ label }}</label>
 </ng-template>
@@ -101,7 +71,7 @@
 <!--Heading Template-->
 <ng-template #heading let-control>
   <div *ngIf="control.type === 'heading'">
-    <p class="title">{{control.label}}</p>
+    <p class='title'>{{control.label}}</p>
     <p>{{control.subheader}}</p>
     <hr>
   </div>
@@ -109,18 +79,18 @@
 
 
 <ng-template #errors let-control>
-  <div class="invalid-feedback" *ngIf="_submitted && _getFormController(control).invalid">
+  <div class='invalid-feedback' *ngIf='_submitted && _getFormController(control).invalid'>
       <span *ngIf="_getFormController(control).errors!!['pattern']"
-            class="is-invalid">{{control.errors?.pattern ? control.errors?.pattern : 'Field is not valid'}}</span>
+            class='is-invalid'>{{control.errors?.pattern ? control.errors?.pattern : 'Field is not valid'}}</span>
     <span *ngIf="_getFormController(control).errors!!['required']"
-          class="is-invalid">{{control.errors?.required ? control.errors?.required : 'Field is required'}}</span>
+          class='is-invalid'>{{control.errors?.required ? control.errors?.required : 'Field is required'}}</span>
     <span *ngIf="_getFormController(control).errors!!['maxlength']"
-          class="is-invalid">{{control.errors?.maxLength ? control.errors?.maxLength : 'Value cannot <' + control.validators?.maxLength}}</span>
+          class='is-invalid'>{{control.errors?.maxLength ? control.errors?.maxLength : 'Value cannot <' + control.validators?.maxLength}}</span>
     <span *ngIf="_getFormController(control).errors!!['minlength']"
-          class="is-invalid">{{control.errors?.minLength ? control.errors?.minLength : 'Value cannot >' + control.validators?.minLength}}</span>
+          class='is-invalid'>{{control.errors?.minLength ? control.errors?.minLength : 'Value cannot >' + control.validators?.minLength}}</span>
     <span *ngIf="_getFormController(control).errors!!['max']"
-          class="is-invalid">{{control.errors?.max ? control.errors?.max : 'Value cannot <' + control.validators?.max}}</span>
+          class='is-invalid'>{{control.errors?.max ? control.errors?.max : 'Value cannot <' + control.validators?.max}}</span>
     <span *ngIf="_getFormController(control).errors!!['min']"
-          class="is-invalid">{{control.errors?.min ? control.errors?.min : 'Value cannot >' + control.validators?.min}}</span>
+          class='is-invalid'>{{control.errors?.min ? control.errors?.min : 'Value cannot >' + control.validators?.min}}</span>
   </div>
 </ng-template>
