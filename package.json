@@ -1,6 +1,6 @@
 {
   "name": "@godzilla-forms/parser",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Godzilla Forms parser library for angular",
   "private": false,
   "publishConfig": {
@@ -18,18 +18,18 @@
     "Godzilla",
     "Form Builder"
   ],
-  "author": "Abdullah Alhazmy",
+  "author": "Alhazmy",
   "email": "me@alhazmy13.net",
   "license": "MIT",
-  "homepage": "https://github.com/alhazmy13/godzilla#readme",
+  "homepage": "https://github.com/Godzilla-Forms/angular-parser#readme",
   "bugs": {
-    "url": "https://github.com/alhazmy13/godzilla/issues"
+    "url": "https://github.com/Godzilla-Forms/angular-parser/issues"
   },
   "peerDependencies": {
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
-    "@godzilla-forms/core": "file:../core"
+    "@godzilla-forms/core": "^0.0.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.3",

@@ -27,7 +27,6 @@ export class GodzillaFormsParserComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     this.createForm(this.jsonForm);
-
   }
 
   /**
@@ -49,7 +48,13 @@ export class GodzillaFormsParserComponent implements OnChanges {
     }
   }
 
+  /**
+   * Public function to notify the parser component to reset the form
+   */
+  public notifyFormChanged(){
+    this.createForm(this.jsonForm);
 
+  }
   /**
    * Public function to be called by another component to validate the form and emit
    * the form values
@@ -126,7 +131,7 @@ export class GodzillaFormsParserComponent implements OnChanges {
     this._godzillaLoader.getDataService(serviceName).then(data => {
       control.value.valueOptions = data;
     }).catch(err => {
-      console.debug(err);
+      console.error(err);
     })
   }
 

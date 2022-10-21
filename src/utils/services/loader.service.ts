@@ -2,7 +2,7 @@ import {Inject, Injectable, Injector, Optional} from "@angular/core";
 import {GodzillaDataService, GodzillaFormCombinedValues} from "@godzilla-forms/core";
 import {GODZILLA_OPTIONS, GodzillaOptions} from "../factory";
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class GodzillaLoaderService {
 
   private readonly _options: GodzillaOptions = {}
