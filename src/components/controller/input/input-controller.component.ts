@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Directive, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { GodzillaFormControls, GodzillaItemTypes } from '@godzilla-forms/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
+import { labelPosition } from '../../../utils/controller';
 
 @Component({
   selector: 'godzilla-forms-input-controller',
@@ -36,6 +37,10 @@ export class InputControllerComponent implements OnInit {
     }
     let _controller = this.form.get(item.id)!!;
     _controller.setValue(event.target.checked);
+  }
+
+  _getLabelPosition(item: GodzillaFormControls) {
+    return labelPosition(item);
   }
 
 }

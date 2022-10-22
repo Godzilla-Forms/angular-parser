@@ -4,10 +4,10 @@ import { ControlContainer, FormGroup } from '@angular/forms';
 import { labelPosition } from '../../../utils/controller';
 
 @Component({
-  selector: 'godzilla-forms-select-controller',
-  templateUrl: './select-controller.component.html'
+  selector: 'godzilla-forms-radio-controller',
+  templateUrl: './radio-controller.component.html'
 })
-export class SelectControllerComponent implements OnInit {
+export class RadioControllerComponent implements OnInit {
 
   // @ts-ignore
   @Input public controlName: string;
@@ -23,7 +23,9 @@ export class SelectControllerComponent implements OnInit {
   ngOnInit() {
     this.form = <FormGroup>this.controlContainer.control;
   }
+
   _getLabelPosition(item: GodzillaFormControls) {
     return labelPosition(item);
   }
+
 }

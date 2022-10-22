@@ -5,7 +5,8 @@ import { GodzillaLoaderService } from './utils/services/loader.service';
 import { GODZILLA_OPTIONS, GodzillaOptions } from './utils/factory';
 import { GodzillaFormsParserComponent } from './components';
 import {
-  InputControllerComponent,
+  HeadingControllerComponent,
+  InputControllerComponent, LabelControllerComponent, RadioControllerComponent,
   SelectControllerComponent,
   TextareaControllerComponent,
   UploadControllerComponent
@@ -23,6 +24,9 @@ import {
     SelectControllerComponent,
     TextareaControllerComponent,
     InputControllerComponent,
+    LabelControllerComponent,
+    HeadingControllerComponent,
+    RadioControllerComponent,
     UploadControllerComponent
   ],
   exports: [

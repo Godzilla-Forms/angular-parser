@@ -1,11 +1,9 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
-import {FormBuilder, FormGroup} from "@angular/forms";
-import {GodzillaLoaderService} from "../utils/services/loader.service";
-import {GodzillaFormControls, GodzillaItemTypes, GodzillaValueSource} from '@godzilla-forms/core'
-import {controlCssClass, controlFlow, controlValidators} from "../utils/controller";
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { GodzillaLoaderService } from '../utils/services/loader.service';
+import { GodzillaFormControls, GodzillaItemTypes, GodzillaValueSource } from '@godzilla-forms/core';
+import { controlCssClass, controlFlow, controlValidators, labelPosition, LabelPosition } from '../utils/controller';
 
-
-declare type LabelPosition = "top" | "bottom" | "none";
 
 @Component({
   selector: 'godzilla-forms-parser',
@@ -13,8 +11,8 @@ declare type LabelPosition = "top" | "bottom" | "none";
   styleUrls: ['./form-parser.component.scss']
 })
 export class GodzillaFormsParserComponent implements OnChanges {
-  @Input() jsonForm: GodzillaFormControls[] = []
-  @Input() enableGridSystem: boolean = true
+  @Input() jsonForm: GodzillaFormControls[] = [];
+  @Input() enableGridSystem: boolean = true;
   @Output()
   readonly validData: EventEmitter<any> = new EventEmitter<any>();
   _submitted = false;
@@ -34,27 +32,19 @@ export class GodzillaFormsParserComponent implements OnChanges {
    * @param item
    * @private
    */
-  _labelPosition(item: GodzillaFormControls): LabelPosition {
-    switch (true) {
-      case item.style?.floating === true:
-      case item.type == GodzillaItemTypes.checkbox:
-        return "bottom"
-      case item.style?.floating === false:
-        return "top"
-      case item.type == GodzillaItemTypes.heading:
-        return "none"
-      default:
-        return "top"
-    }
+  _getLabelPosition(item: GodzillaFormControls) {
+    return labelPosition(item);
   }
+
 
   /**
    * Public function to notify the parser component to reset the form
    */
-  public notifyFormChanged(){
+  public notifyFormChanged() {
     this.createForm(this.jsonForm);
 
   }
+
   /**
    * Public function to be called by another component to validate the form and emit
    * the form values
@@ -72,7 +62,7 @@ export class GodzillaFormsParserComponent implements OnChanges {
    * @private
    */
   _getFormController(item: GodzillaFormControls) {
-    return this.form.get(item.id)!!
+    return this.form.get(item.id)!!;
   }
 
   /**
@@ -82,9 +72,8 @@ export class GodzillaFormsParserComponent implements OnChanges {
    * @private
    */
   _getFormControllerById(id: string) {
-    return this.form.get(id)
+    return this.form.get(id);
   }
-
 
 
   /**
@@ -94,7 +83,7 @@ export class GodzillaFormsParserComponent implements OnChanges {
    */
   private createForm(controls: GodzillaFormControls[]) {
     for (const control of controls) {
-      if (control.type == GodzillaItemTypes.heading) continue
+      if (control.type == GodzillaItemTypes.heading) continue;
       const validatorsToAdd = controlValidators(control);
       if (control.value.valueSource == GodzillaValueSource.service) {
         this._getDataFromService(control, control.value.serviceName);
@@ -112,13 +101,13 @@ export class GodzillaFormsParserComponent implements OnChanges {
    */
   private _getDataFromService(control: GodzillaFormControls, serviceName?: string) {
     if (!serviceName)
-      return
+      return;
     control.value.valueOptions = [];
     this._godzillaLoader.getDataService(serviceName).then(data => {
       control.value.valueOptions = data;
     }).catch(err => {
       console.error(err);
-    })
+    });
   }
 
   /**
@@ -129,8 +118,8 @@ export class GodzillaFormsParserComponent implements OnChanges {
    */
   _isFlowValid(control: GodzillaFormControls) {
     if (!control.flow || !control.flow.basedOn)
-      return true
-    return controlFlow(control, this._getFormControllerById(control.flow.basedOn))
+      return true;
+    return controlFlow(control, this._getFormControllerById(control.flow.basedOn));
   }
 
 
@@ -140,7 +129,7 @@ export class GodzillaFormsParserComponent implements OnChanges {
    * @private
    */
   _getCssClass(control: GodzillaFormControls) {
-    return controlCssClass(control, this.enableGridSystem)
+    return controlCssClass(control, this.enableGridSystem);
   }
 
 

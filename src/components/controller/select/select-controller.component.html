@@ -1,4 +1,7 @@
-<ng-container [formGroup]='form'>
+<div [formGroup]='form' [class.form-floating]='control.style?.floating'>
+  <godzilla-forms-label-controller *ngIf="_getLabelPosition(control) == 'top'"
+                                   [control]='control'></godzilla-forms-label-controller>
+
   <select class='form-select'
           [id]='control.id'
           [formControlName]='controlName'
@@ -11,4 +14,9 @@
             [value]='option.value'
             [selected]='control.value.defaultValue == option.value'>{{option.label}}</option>
   </select>
-</ng-container>
+  <label [for]='control.id' *ngIf="control.label !== ''&& _getLabelPosition(control) == 'bottom'"
+         [hidden]='control.options?.hidden== undefined ? false : control.options?.hidden'
+         [class.form-check-label]="control.type === 'checkbox'">
+    {{ control.label }} <small *ngIf='control?.validators?.required'>*</small></label>
+
+</div>

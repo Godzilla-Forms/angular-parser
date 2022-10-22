@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { GodzillaFormControls } from '@godzilla-forms/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
+import { labelPosition } from '../../../utils/controller';
 
 @Component({
   selector: 'godzilla-forms-textarea-controller',
@@ -23,4 +24,7 @@ export class TextareaControllerComponent implements OnInit {
     this.form = <FormGroup>this.controlContainer.control;
   }
 
+  _getLabelPosition(item: GodzillaFormControls) {
+    return labelPosition(item);
+  }
 }
