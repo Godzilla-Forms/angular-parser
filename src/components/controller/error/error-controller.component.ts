@@ -3,10 +3,10 @@ import { GodzillaFormControls } from '@godzilla-forms/core';
 import { ControlContainer, FormGroup } from '@angular/forms';
 
 @Component({
-  selector: 'godzilla-forms-upload-controller',
-  templateUrl: './upload-controller.component.html'
+  selector: 'godzilla-forms-error-controller',
+  templateUrl: './error-controller.component.html'
 })
-export class UploadControllerComponent implements OnInit{
+export class ErrorControllerComponent implements OnInit {
 
   // @ts-ignore
   @Input public controlName: string;
@@ -21,6 +21,10 @@ export class UploadControllerComponent implements OnInit{
 
   ngOnInit() {
     this.form = <FormGroup>this.controlContainer.control;
+  }
+
+  _getFormController() {
+    return this.form.get(this.controlName)!!;
   }
 
 }

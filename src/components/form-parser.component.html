@@ -1,8 +1,8 @@
-<div [formGroup]='form' class='row'>
+<div [formGroup]='form' class='row needs-validation'>
   <div *ngFor='let control of jsonForm'
        [class]='_getCssClass(control)'>
     <div *ngIf='_isFlowValid(control)'
-         class='form-floating'
+         class='needs-validation'
          [class.form-check]="control.type === 'checkbox'">
       <godzilla-forms-heading-controller *ngIf="control.type === 'heading'"
                                          [control]='control'></godzilla-forms-heading-controller>
@@ -24,30 +24,16 @@
                                         [controlName]='control.id'></godzilla-forms-select-controller>
       <godzilla-forms-upload-controller *ngIf="control.type === 'upload'"
                                         [control]='control'
+                                        [submitted]='_submitted'
                                         [controlName]='control.id'></godzilla-forms-upload-controller>
       <godzilla-forms-radio-controller *ngIf="control.type === 'radio'"
                                        [control]='control'
+                                       [submitted]='_submitted'
                                        [controlName]='control.id'></godzilla-forms-radio-controller>
 
-      <ng-container *ngTemplateOutlet='errors; context: {$implicit: control}'></ng-container>
+      <godzilla-forms-error-controller [control]='control'
+                                       [submitted]='_submitted'
+                                       [controlName]='control.id'></godzilla-forms-error-controller>
     </div>
   </div>
 </div>
-
-
-<ng-template #errors let-control>
-  <div class='invalid-feedback' *ngIf='_submitted && _getFormController(control).invalid'>
-      <span *ngIf="_getFormController(control).errors!!['pattern']"
-            class='is-invalid'>{{control.errors?.pattern ? control.errors?.pattern : 'Field is not valid'}}</span>
-    <span *ngIf="_getFormController(control).errors!!['required']"
-          class='is-invalid'>{{control.errors?.required ? control.errors?.required : 'Field is required'}}</span>
-    <span *ngIf="_getFormController(control).errors!!['maxlength']"
-          class='is-invalid'>{{control.errors?.maxLength ? control.errors?.maxLength : 'Value cannot <' + control.validators?.maxLength}}</span>
-    <span *ngIf="_getFormController(control).errors!!['minlength']"
-          class='is-invalid'>{{control.errors?.minLength ? control.errors?.minLength : 'Value cannot >' + control.validators?.minLength}}</span>
-    <span *ngIf="_getFormController(control).errors!!['max']"
-          class='is-invalid'>{{control.errors?.max ? control.errors?.max : 'Value cannot <' + control.validators?.max}}</span>
-    <span *ngIf="_getFormController(control).errors!!['min']"
-          class='is-invalid'>{{control.errors?.min ? control.errors?.min : 'Value cannot >' + control.validators?.min}}</span>
-  </div>
-</ng-template>

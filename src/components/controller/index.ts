@@ -5,3 +5,4 @@ export * from './input/input-controller.component';
 export * from './radio/radio-controller.component';
 export * from './label/label-controller.component';
 export * from './heading/heading-controller.component';
+export * from './error/error-controller.component';
