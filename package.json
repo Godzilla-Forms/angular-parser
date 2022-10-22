@@ -1,6 +1,6 @@
 {
   "name": "@godzilla-forms/parser",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Godzilla Forms parser library for angular",
   "private": false,
   "publishConfig": {
@@ -29,7 +29,7 @@
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
-    "@godzilla-forms/core": "file:../core/dist"
+    "@godzilla-forms/core": "^0.0.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.3",
