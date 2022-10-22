@@ -1,6 +1,6 @@
 {
   "name": "@godzilla-forms/parser",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Godzilla Forms parser library for angular",
   "private": false,
   "publishConfig": {
@@ -11,8 +11,9 @@
     "build": "ng build godzilla-forms-parser",
     "watch": "ng build godzilla-forms-parser --configuration development --watch",
     "test": "ng build godzilla-forms-parser",
+    "lint": "eslint src --ext .js,.jsx,.ts,.tsx",
     "prepare": "npm run build",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run lint && npm run build"
   },
   "keywords": [
     "Godzilla",
@@ -29,13 +30,22 @@
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
-    "@godzilla-forms/core": "^0.0.4"
+    "@godzilla-forms/core": "^0.0.7"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.3",
     "@angular/cli": "~14.2.1",
     "@angular/compiler-cli": "^14.0.0",
     "@types/jasmine": "~4.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.26.0",
+    "eslint-config-airbnb-typescript": "^17.0.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard-with-typescript": "^23.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-n": "^15.3.0",
+    "eslint-plugin-promise": "^6.1.1",
     "jasmine-core": "~4.3.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
@@ -45,7 +55,6 @@
     "ng-packagr": "^14.2.0",
     "typescript": "~4.7.2"
   },
-
   "module": "dist/fesm2015/godzilla-forms-parser.mjs",
   "es2020": "dist/fesm2020/godzilla-forms-parser.mjs",
   "esm2020": "dist/esm2020/godzilla-forms-parser.mjs",

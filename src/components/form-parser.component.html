@@ -1,7 +1,7 @@
 <div [formGroup]='form' class='row needs-validation'>
   <div *ngFor='let control of jsonForm'
-       [class]='_getCssClass(control)'>
-    <div *ngIf='_isFlowValid(control)'
+       [class]='getCssClass(control)'>
+    <div *ngIf='isFlowValid(control)'
          class='needs-validation'
          [class.form-check]="control.type === 'checkbox'">
       <godzilla-forms-heading-controller *ngIf="control.type === 'heading'"
@@ -12,27 +12,27 @@
          'number', 'search', 'tel',
          'checkbox', 'url', 'color'].includes(control.type)"
         [control]='control'
-        [submitted]='_submitted'
+        [submitted]='submitted'
         [controlName]='control.id'></godzilla-forms-input-controller>
       <godzilla-forms-textarea-controller *ngIf="control.type == 'textarea'"
                                           [control]='control'
-                                          [submitted]='_submitted'
+                                          [submitted]='submitted'
                                           [controlName]='control.id'></godzilla-forms-textarea-controller>
       <godzilla-forms-select-controller *ngIf="control.type == 'dropdown'"
                                         [control]='control'
-                                        [submitted]='_submitted'
+                                        [submitted]='submitted'
                                         [controlName]='control.id'></godzilla-forms-select-controller>
       <godzilla-forms-upload-controller *ngIf="control.type === 'upload'"
                                         [control]='control'
-                                        [submitted]='_submitted'
+                                        [submitted]='submitted'
                                         [controlName]='control.id'></godzilla-forms-upload-controller>
       <godzilla-forms-radio-controller *ngIf="control.type === 'radio'"
                                        [control]='control'
-                                       [submitted]='_submitted'
+                                       [submitted]='submitted'
                                        [controlName]='control.id'></godzilla-forms-radio-controller>
 
       <godzilla-forms-error-controller [control]='control'
-                                       [submitted]='_submitted'
+                                       [submitted]='submitted'
                                        [controlName]='control.id'></godzilla-forms-error-controller>
     </div>
   </div>

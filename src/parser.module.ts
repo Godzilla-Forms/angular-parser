@@ -10,15 +10,14 @@ import {
   InputControllerComponent, LabelControllerComponent, RadioControllerComponent,
   SelectControllerComponent,
   TextareaControllerComponent,
-  UploadControllerComponent
+  UploadControllerComponent,
 } from './components/controller';
-
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
   ],
   declarations: [
     GodzillaFormsParserComponent,
@@ -29,12 +28,12 @@ import {
     HeadingControllerComponent,
     ErrorControllerComponent,
     RadioControllerComponent,
-    UploadControllerComponent
+    UploadControllerComponent,
   ],
   exports: [
-    GodzillaFormsParserComponent
+    GodzillaFormsParserComponent,
   ],
-  providers: [GodzillaLoaderService]
+  providers: [GodzillaLoaderService],
 })
 
 export class GodzillaParserModule {
@@ -43,16 +42,15 @@ export class GodzillaParserModule {
       ngModule: GodzillaParserModule,
       providers: [{
         provide: GODZILLA_OPTIONS,
-        useValue: config
-      }]
+        useValue: config,
+      }],
     };
   }
 
   public static forChild(): ModuleWithProviders<GodzillaParserModule> {
     return {
       ngModule: GodzillaParserModule,
-      providers: []
+      providers: [],
     };
   }
 }
-

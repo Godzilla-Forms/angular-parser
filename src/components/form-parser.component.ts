@@ -1,48 +1,37 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { GodzillaLoaderService } from '../utils/services/loader.service';
 import { GodzillaFormControls, GodzillaItemTypes, GodzillaValueSource } from '@godzilla-forms/core';
-import { controlCssClass, controlFlow, controlValidators, labelPosition, LabelPosition } from '../utils/controller';
-
+import { GodzillaLoaderService } from '../utils/services/loader.service';
+import { controlCssClass, controlFlow, controlValidators } from '../utils/controller';
 
 @Component({
   selector: 'godzilla-forms-parser',
   templateUrl: './form-parser.component.html',
-  styleUrls: ['./form-parser.component.scss']
+  styleUrls: ['./form-parser.component.scss'],
 })
 export class GodzillaFormsParserComponent implements OnChanges {
   @Input() jsonForm: GodzillaFormControls[] = [];
+
   @Input() enableGridSystem: boolean = true;
-  @Output()
-  readonly validData: EventEmitter<any> = new EventEmitter<any>();
-  _submitted = false;
-  readonly form: FormGroup = this._formBuilder.group({});
 
-  constructor(private _formBuilder: FormBuilder,
-              private _godzillaLoader: GodzillaLoaderService) {
-  }
+  @Output() readonly validData: EventEmitter<any> = new EventEmitter<any>();
 
+  submitted = false;
 
+  readonly form: FormGroup = this.formBuilder.group({});
+
+  constructor(private formBuilder: FormBuilder, private godzillaLoader: GodzillaLoaderService) {}
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ngOnChanges(changes: SimpleChanges) {
     this.createForm(this.jsonForm);
   }
-
-  /**
-   * Internal function to detect the label position based on control type
-   * @param item
-   * @private
-   */
-  _getLabelPosition(item: GodzillaFormControls) {
-    return labelPosition(item);
-  }
-
 
   /**
    * Public function to notify the parser component to reset the form
    */
   public notifyFormChanged() {
     this.createForm(this.jsonForm);
-
   }
 
   /**
@@ -50,19 +39,10 @@ export class GodzillaFormsParserComponent implements OnChanges {
    * the form values
    */
   public validate() {
-    this._submitted = true;
-    if (this.form.valid)
+    this.submitted = true;
+    if (this.form.valid) {
       this.validData.emit(this.form.getRawValue());
-  }
-
-  /**
-   * Internal function to return the form control
-   * @param item: GodzillaFormControls
-   * Returns: AbstractControl | null
-   * @private
-   */
-  _getFormController(item: GodzillaFormControls) {
-    return this.form.get(item.id)!!;
+    }
   }
 
   /**
@@ -71,10 +51,9 @@ export class GodzillaFormsParserComponent implements OnChanges {
    * Returns: AbstractControl | null
    * @private
    */
-  _getFormControllerById(id: string) {
+  getFormControllerById(id: string) {
     return this.form.get(id);
   }
-
 
   /**
    * Internal function to build the dynamic form
@@ -82,16 +61,20 @@ export class GodzillaFormsParserComponent implements OnChanges {
    * @private
    */
   private createForm(controls: GodzillaFormControls[]) {
+    // eslint-disable-next-line no-restricted-syntax
     for (const control of controls) {
-      if (control.type == GodzillaItemTypes.heading) continue;
+      // eslint-disable-next-line no-continue
+      if (control.type === GodzillaItemTypes.heading) continue;
       const validatorsToAdd = controlValidators(control);
-      if (control.value.valueSource == GodzillaValueSource.service) {
-        this._getDataFromService(control, control.value.serviceName);
+      if (control.value.valueSource === GodzillaValueSource.service) {
+        this.getDataFromService(control, control.value.serviceName);
       }
-      this.form.addControl(control.id, this._formBuilder.control(control.value.defaultValue, validatorsToAdd));
+      this.form.addControl(
+        control.id,
+        this.formBuilder.control(control.value.defaultValue, validatorsToAdd),
+      );
     }
   }
-
 
   /**
    * Internal function to update the default value of control based on injected service name
@@ -99,15 +82,17 @@ export class GodzillaFormsParserComponent implements OnChanges {
    * @param serviceName: injected service name
    * @private
    */
-  private _getDataFromService(control: GodzillaFormControls, serviceName?: string) {
-    if (!serviceName)
+  private getDataFromService(control: GodzillaFormControls, serviceName?: string) {
+    if (!serviceName) {
       return;
+    }
     control.value.valueOptions = [];
-    this._godzillaLoader.getDataService(serviceName).then(data => {
-      control.value.valueOptions = data;
-    }).catch(err => {
-      console.error(err);
-    });
+    this.godzillaLoader
+      .getDataService(serviceName)
+      .then((data) => {
+        control.value.valueOptions = data;
+      })
+      .catch(() => {});
   }
 
   /**
@@ -116,21 +101,19 @@ export class GodzillaFormsParserComponent implements OnChanges {
    * @param control
    * @private
    */
-  _isFlowValid(control: GodzillaFormControls) {
-    if (!control.flow || !control.flow.basedOn)
+  isFlowValid(control: GodzillaFormControls) {
+    if (!control.flow || !control.flow.basedOn) {
       return true;
-    return controlFlow(control, this._getFormControllerById(control.flow.basedOn));
+    }
+    return controlFlow(control, this.getFormControllerById(control.flow.basedOn));
   }
-
 
   /**
    * Internal function to return the desired css classes for any form control
    * @param control
    * @private
    */
-  _getCssClass(control: GodzillaFormControls) {
+  getCssClass(control: GodzillaFormControls) {
     return controlCssClass(control, this.enableGridSystem);
   }
-
-
 }

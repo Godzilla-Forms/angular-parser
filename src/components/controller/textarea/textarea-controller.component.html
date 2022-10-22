@@ -1,5 +1,5 @@
 <div [formGroup]='form' [class.form-floating]='control.style?.floating'>
-  <godzilla-forms-label-controller *ngIf="_getLabelPosition(control) == 'top'"
+  <godzilla-forms-label-controller *ngIf="labelPosition(control) == 'top'"
                                    [control]='control'></godzilla-forms-label-controller>
   <textarea
     class='form-control'
@@ -12,7 +12,7 @@
     [ngClass]="{ 'is-invalid': submitted && form.get(controlName)!!.invalid }"
     [attr.required]="control.validators?.required == true ? '' : null"
   ></textarea>
-  <label [for]='control.id' *ngIf="control.label !== ''&& _getLabelPosition(control) == 'bottom'"
+  <label [for]='control.id' *ngIf="control.label !== ''&& labelPosition(control) == 'bottom'"
          [hidden]='control.options?.hidden== undefined ? false : control.options?.hidden'
          [class.form-check-label]="control.type === 'checkbox'">
     {{ control.label }} <small *ngIf='control?.validators?.required'>*</small></label>

@@ -1,16 +1,16 @@
 <ng-container>
-  <div class='invalid-feedback d-block' *ngIf='submitted && _getFormController().invalid'>
-      <span *ngIf="_getFormController().errors!!['pattern']"
+  <div class='invalid-feedback d-block' *ngIf='submitted && getFormController().invalid'>
+      <span *ngIf="getFormController().errors!!['pattern']"
             class='is-invalid'>{{control.errors?.pattern ? control.errors?.pattern : 'Field is not valid'}}</span>
-    <span *ngIf="_getFormController().errors!!['required']"
+    <span *ngIf="getFormController().errors!!['required']"
           class='is-invalid'>{{control.errors?.required ? control.errors?.required : 'Field is required'}}</span>
-    <span *ngIf="_getFormController().errors!!['maxlength']"
+    <span *ngIf="getFormController().errors!!['maxlength']"
           class='is-invalid'>{{control.errors?.maxLength ? control.errors?.maxLength : 'Value cannot <' + control.validators?.maxLength}}</span>
-    <span *ngIf="_getFormController().errors!!['minlength']"
+    <span *ngIf="getFormController().errors!!['minlength']"
           class='is-invalid'>{{control.errors?.minLength ? control.errors?.minLength : 'Value cannot >' + control.validators?.minLength}}</span>
-    <span *ngIf="_getFormController().errors!!['max']"
+    <span *ngIf="getFormController().errors!!['max']"
           class='is-invalid'>{{control.errors?.max ? control.errors?.max : 'Value cannot <' + control.validators?.max}}</span>
-    <span *ngIf="_getFormController().errors!!['min']"
+    <span *ngIf="getFormController().errors!!['min']"
           class='is-invalid'>{{control.errors?.min ? control.errors?.min : 'Value cannot >' + control.validators?.min}}</span>
   </div>
 </ng-container>

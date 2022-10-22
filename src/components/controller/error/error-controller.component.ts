@@ -10,10 +10,13 @@ export class ErrorControllerComponent implements OnInit {
 
   // @ts-ignore
   @Input public controlName: string;
+
   // @ts-ignore
   public form: FormGroup;
+
   // @ts-ignore
   @Input() control: GodzillaFormControls;
+
   @Input() submitted = false;
 
   constructor(public controlContainer: ControlContainer) {
@@ -23,7 +26,7 @@ export class ErrorControllerComponent implements OnInit {
     this.form = <FormGroup>this.controlContainer.control;
   }
 
-  _getFormController() {
+  getFormController() {
     return this.form.get(this.controlName)!!;
   }
 

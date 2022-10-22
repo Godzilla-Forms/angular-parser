@@ -1,6 +1,7 @@
 src
 tsconfig.json
-tslint.json
+.eslintrc.json
+.github
 .prettierrc
 .angular
 .vscode
