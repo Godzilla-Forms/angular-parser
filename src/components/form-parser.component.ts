@@ -40,6 +40,7 @@ export class GodzillaFormsParserComponent implements OnChanges {
    */
   public validate() {
     this.submitted = true;
+    console.log(this.form.errors);
     if (this.form.valid) {
       this.validData.emit(this.form.getRawValue());
     }
@@ -66,6 +67,7 @@ export class GodzillaFormsParserComponent implements OnChanges {
       // eslint-disable-next-line no-continue
       if (control.type === GodzillaItemTypes.heading) continue;
       const validatorsToAdd = controlValidators(control);
+      console.log(validatorsToAdd);
       if (control.value.valueSource === GodzillaValueSource.service) {
         this.getDataFromService(control, control.value.serviceName);
       }

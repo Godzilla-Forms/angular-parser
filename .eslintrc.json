@@ -17,6 +17,7 @@
     "project": "./tsconfig.json"
   },
   "rules": {
+    "class-methods-use-this": 0,
     "no-param-reassign": 0,
     "import/prefer-default-export": "off",
     "max-classes-per-file": [

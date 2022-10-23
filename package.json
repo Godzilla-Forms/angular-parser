@@ -30,7 +30,8 @@
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
-    "@godzilla-forms/core": "^0.0.7"
+    "@godzilla-forms/core": "file:../core",
+    "rxjs": "~7.5.7"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^14.2.3",
