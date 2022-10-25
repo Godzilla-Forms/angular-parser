@@ -4,45 +4,41 @@ import { ControlContainer, FormGroup } from '@angular/forms';
 import { labelPosition } from '../../../utils/controller';
 
 @Component({
-  selector: 'godzilla-forms-input-controller',
-  templateUrl: './input-controller.component.html'
+	selector: 'godzilla-forms-input-controller',
+	templateUrl: './input-controller.component.html',
 })
 export class InputControllerComponent implements OnInit {
+	// @ts-ignore
+	@Input public controlName: string;
 
-  // @ts-ignore
-  @Input public controlName: string;
+	// @ts-ignore
+	public form: FormGroup;
 
-  // @ts-ignore
-  public form: FormGroup;
+	// @ts-ignore
+	@Input() control: GodzillaFormControls;
 
-  // @ts-ignore
-  @Input() control: GodzillaFormControls;
+	@Input() submitted = false;
 
-  @Input() submitted = false;
+	labelPosition = labelPosition;
 
-  labelPosition = labelPosition;
+	constructor(public controlContainer: ControlContainer) {}
 
-  constructor(public controlContainer: ControlContainer) {
-  }
+	ngOnInit() {
+		this.form = <FormGroup>this.controlContainer.control;
+	}
 
-  ngOnInit() {
-    this.form = <FormGroup>this.controlContainer.control;
-  }
-
-  /**
-   * Internal function to update the status of checkbox,
-   * This function is workaround since reactive form cannot update the status of checkbox
-   * @param item: GodzillaFormControls
-   * @param event: input event as row value
-   * @private
-   */
-  changeStatus(item: GodzillaFormControls, event: any) {
-    if (item.type !== GodzillaItemTypes.checkbox) {
-      return;
-    }
-    const controller = this.form.get(item.id)!!;
-    controller.setValue(event.target.checked);
-  }
-
-
+	/**
+	 * Internal function to update the status of checkbox,
+	 * This function is workaround since reactive form cannot update the status of checkbox
+	 * @param item: GodzillaFormControls
+	 * @param event: input event as row value
+	 * @private
+	 */
+	changeStatus(item: GodzillaFormControls, event: any) {
+		if (item.type !== GodzillaItemTypes.checkbox) {
+			return;
+		}
+		const controller = this.form.get(item.id)!!;
+		controller.setValue(event.target.checked);
+	}
 }

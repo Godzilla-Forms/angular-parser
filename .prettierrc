@@ -1,5 +1,29 @@
 {
-  "printWidth": 100,
+  "singleQuote": true,
   "trailingComma": "all",
-  "singleQuote": true
+  "overrides": [
+    {
+      "files": [
+        "**/.scss",
+        "**/*.scss",
+        "**/*.html"
+      ],
+      "options": {
+        "singleQuote": false
+      }
+    },
+    {
+      "files": "**/*.md",
+      "options": {
+        "parser": "markdown",
+        "proseWrap": "always"
+      }
+    }
+  ],
+  "printWidth": 100,
+  "tabWidth": 2,
+  "useTabs": true,
+  "bracketSpacing": true,
+  "bracketSameLine": true,
+  "semi": true
 }

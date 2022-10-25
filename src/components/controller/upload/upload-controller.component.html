@@ -1,14 +1,17 @@
-<ng-container [formGroup]='form'>
-  <godzilla-forms-label-controller [control]='control'></godzilla-forms-label-controller>
+<ng-container [formGroup]="form">
+	<godzilla-forms-label-controller [control]="control"></godzilla-forms-label-controller>
 
-  <input class='form-control is-invalid' type='file' id='formFile'
-         [id]='control.id'
-         [formControlName]='controlName'
-         [placeholder]='control.placeholder'
-         (change)="onFileAdded($event)"
-         [attr.hidden]="control.options?.hidden== true ? '' : null"
-         [attr.disabled]="control.options?.disabled == true ? '' : null"
-         [attr.required]="control.validators?.required == true ? '' : null"
-         [attr.accept]='control.validators?.allowedTypes'
-         [ngClass]="{ 'is-invalid': submitted && form.get(controlName)!!.invalid }">
+	<input
+		class="form-control is-invalid"
+		type="file"
+		id="formFile"
+		[id]="control.id"
+		[formControlName]="controlName"
+		[placeholder]="control.placeholder"
+		(change)="onFileAdded($event)"
+		[attr.hidden]="control.options?.hidden == true ? '' : null"
+		[attr.disabled]="control.options?.disabled == true ? '' : null"
+		[attr.required]="control.validators?.required == true ? '' : null"
+		[attr.accept]="control.validators?.allowedTypes"
+		[ngClass]="{ 'is-invalid': submitted && form.get(controlName)!!.invalid }" />
 </ng-container>

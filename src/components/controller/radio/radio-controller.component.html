@@ -1,22 +1,23 @@
-<ng-container [formGroup]='form'>
-  <godzilla-forms-label-controller
-    [control]='control'></godzilla-forms-label-controller>
+<ng-container [formGroup]="form">
+	<godzilla-forms-label-controller [control]="control"></godzilla-forms-label-controller>
 
-  <div *ngFor='let radio of control.value.valueOptions' class='form-check'>
-    <input
-      class='form-check-input'
-      type='radio'
-      [id]='control.id'
-      [formControlName]='controlName'
-      [value]='radio.value'
-      [attr.hidden]="control.options?.hidden== true ? '' : null"
-      [attr.disabled]="control.options?.disabled == true ? '' : null"
-      [ngClass]="{ 'is-invalid': submitted && form.get(controlName)!!.invalid }"
-      [attr.required]="control.validators?.required == true ? '' : null"
-      [checked]='radio.value === control.value.defaultValue' />
-    <label [for]='control.id' *ngIf="radio.label !== ''"
-           [hidden]='control.options?.hidden== undefined ? false : control.options?.hidden'>
-      {{ radio.label }}</label>
-  </div>
-
+	<div *ngFor="let radio of control.value.valueOptions" class="form-check">
+		<input
+			class="form-check-input"
+			type="radio"
+			[id]="control.id"
+			[formControlName]="controlName"
+			[value]="radio.value"
+			[attr.hidden]="control.options?.hidden == true ? '' : null"
+			[attr.disabled]="control.options?.disabled == true ? '' : null"
+			[ngClass]="{ 'is-invalid': submitted && form.get(controlName)!!.invalid }"
+			[attr.required]="control.validators?.required == true ? '' : null"
+			[checked]="radio.value === control.value.defaultValue" />
+		<label
+			[for]="control.id"
+			*ngIf="radio.label !== ''"
+			[hidden]="control.options?.hidden == undefined ? false : control.options?.hidden">
+			{{ radio.label }}</label
+		>
+	</div>
 </ng-container>

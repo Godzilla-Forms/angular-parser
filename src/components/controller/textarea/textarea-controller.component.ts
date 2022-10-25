@@ -4,26 +4,26 @@ import { ControlContainer, FormGroup } from '@angular/forms';
 import { labelPosition } from '../../../utils/controller';
 
 @Component({
-  selector: 'godzilla-forms-textarea-controller',
-  templateUrl: './textarea-controller.component.html',
+	selector: 'godzilla-forms-textarea-controller',
+	templateUrl: './textarea-controller.component.html',
 })
 export class TextareaControllerComponent implements OnInit {
-  // @ts-ignore
-  @Input public controlName: string;
+	// @ts-ignore
+	@Input public controlName: string;
 
-  // @ts-ignore
-  public form: FormGroup;
+	// @ts-ignore
+	public form: FormGroup;
 
-  // @ts-ignore
-  @Input() control: GodzillaFormControls;
+	// @ts-ignore
+	@Input() control: GodzillaFormControls;
 
-  @Input() submitted = false;
+	@Input() submitted = false;
 
-  labelPosition = labelPosition;
+	labelPosition = labelPosition;
 
-  constructor(public controlContainer: ControlContainer) {}
+	constructor(public controlContainer: ControlContainer) {}
 
-  ngOnInit() {
-    this.form = <FormGroup>this.controlContainer.control;
-  }
+	ngOnInit() {
+		this.form = <FormGroup>this.controlContainer.control;
+	}
 }

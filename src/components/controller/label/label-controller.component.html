@@ -1,6 +1,9 @@
 <ng-container>
-  <label [for]='control.id' *ngIf="control.label !== ''"
-         [hidden]='control.options?.hidden== undefined ? false : control.options?.hidden'
-         [class.form-check-label]="control.type === 'checkbox'">
-    {{ control.label }} <small *ngIf='control?.validators?.required'>*</small></label>
+	<label
+		[for]="control.id"
+		*ngIf="control.label !== ''"
+		[hidden]="control.options?.hidden == undefined ? false : control.options?.hidden"
+		[class.form-check-label]="control.type === 'checkbox'">
+		{{ control.label }} <small *ngIf="control?.validators?.required">*</small></label
+	>
 </ng-container>
