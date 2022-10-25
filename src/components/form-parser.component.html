@@ -1,5 +1,5 @@
 <div [formGroup]='form' class='row needs-validation'>
-  <div *ngFor='let page of jsonForm?.pages'>
+  <div *ngFor='let page of jsonForm?.pages' class="row">
     <div *ngFor='let control of page.controls'
          [class]='getCssClass(control)'>
       <div *ngIf='isFlowValid(control)'
