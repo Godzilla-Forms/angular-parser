@@ -10,7 +10,7 @@
 
 <p align="center">
   <a href="https://github.com/Godzilla-Forms/angular-parser/issues"><img alt="Github issues" src="https://img.shields.io/github/issues-raw/Godzilla-Forms/angular-parser?style=flat-square"></a>
-  <a href="https://www.npmjs.com/package/@godzilla-forms/angular-parser"><img alt="npm" src="https://img.shields.io/npm/v/@godzilla-forms/angular-parser?label=npm%2Fcore&style=flat-square"></a>
+  <a href="https://www.npmjs.com/package/@godzilla-forms/angular-parser"><img alt="npm" src="https://img.shields.io/npm/v/@godzilla-forms/angular-parser?label=npm%2Fangular-parser&style=flat-square"></a>
   <img alt="Framework" src="https://img.shields.io/badge/Freamwork-Angular-brightgreen?style=flat-square"> 
 </p>
 

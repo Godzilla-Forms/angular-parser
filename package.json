@@ -1,6 +1,6 @@
 {
   "name": "@godzilla-forms/angular-parser",
-  "version": "0.0.10",
+  "version": "0.0.11",
   "description": "Godzilla Forms parser library for angular",
   "private": false,
   "publishConfig": {
@@ -56,10 +56,10 @@
     "ng-packagr": "^14.2.0",
     "typescript": "~4.7.2"
   },
-  "module": "dist/fesm2015/godzilla-forms-parser.mjs",
-  "es2020": "dist/fesm2020/godzilla-forms-parser.mjs",
-  "esm2020": "dist/esm2020/godzilla-forms-parser.mjs",
-  "fesm2020": "dist/fesm2020/godzilla-forms-parser.mjs",
-  "fesm2015": "dist/fesm2015/godzilla-forms-parser.mjs",
+  "module": "dist/fesm2015/godzilla-forms-angular-parser.mjs",
+  "es2020": "dist/fesm2020/godzilla-forms-angular-parser.mjs",
+  "esm2020": "dist/esm2020/godzilla-forms-angular-parser.mjs",
+  "fesm2020": "dist/fesm2020/godzilla-forms-angular-parser.mjs",
+  "fesm2015": "dist/fesm2015/godzilla-forms-angular-parser.mjs",
   "typings": "dist/index.d.ts"
 }
