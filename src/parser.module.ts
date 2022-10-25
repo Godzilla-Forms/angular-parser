@@ -7,18 +7,17 @@ import { GodzillaFormsParserComponent } from './components';
 import {
   ErrorControllerComponent,
   HeadingControllerComponent,
-  InputControllerComponent, LabelControllerComponent, RadioControllerComponent,
+  InputControllerComponent,
+  LabelControllerComponent,
+  RadioControllerComponent,
   SelectControllerComponent,
   TextareaControllerComponent,
   UploadControllerComponent,
 } from './components/controller';
+import { ButtonControllerComponent } from './components/controller/button/button-controller.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule],
   declarations: [
     GodzillaFormsParserComponent,
     SelectControllerComponent,
@@ -27,23 +26,23 @@ import {
     LabelControllerComponent,
     HeadingControllerComponent,
     ErrorControllerComponent,
+    ButtonControllerComponent,
     RadioControllerComponent,
     UploadControllerComponent,
   ],
-  exports: [
-    GodzillaFormsParserComponent,
-  ],
+  exports: [GodzillaFormsParserComponent],
   providers: [GodzillaLoaderService],
 })
-
 export class GodzillaParserModule {
   public static forRoot(config?: GodzillaOptions): ModuleWithProviders<GodzillaParserModule> {
     return {
       ngModule: GodzillaParserModule,
-      providers: [{
-        provide: GODZILLA_OPTIONS,
-        useValue: config,
-      }],
+      providers: [
+        {
+          provide: GODZILLA_OPTIONS,
+          useValue: config,
+        },
+      ],
     };
   }
 

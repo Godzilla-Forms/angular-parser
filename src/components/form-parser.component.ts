@@ -1,6 +1,13 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { GodzillaFormControls, GodzillaItemTypes, GodzillaValueSource } from '@godzilla-forms/core';
+import {
+  GodzillaForm,
+  GodzillaFormControls,
+  GodzillaFormPage,
+  GodzillaFormType,
+  GodzillaItemTypes,
+  GodzillaValueSource,
+} from '@godzilla-forms/core';
 import { GodzillaLoaderService } from '../utils/services/loader.service';
 import { controlCssClass, controlFlow, controlValidators } from '../utils/controller';
 
@@ -10,7 +17,7 @@ import { controlCssClass, controlFlow, controlValidators } from '../utils/contro
   styleUrls: ['./form-parser.component.scss'],
 })
 export class GodzillaFormsParserComponent implements OnChanges {
-  @Input() jsonForm: GodzillaFormControls[] = [];
+  @Input() jsonForm: GodzillaForm | undefined;
 
   @Input() enableGridSystem: boolean = true;
 
@@ -24,14 +31,18 @@ export class GodzillaFormsParserComponent implements OnChanges {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ngOnChanges(changes: SimpleChanges) {
-    this.createForm(this.jsonForm);
+    if (this.jsonForm) {
+      this.createPages(this.jsonForm.pages);
+    }
   }
 
   /**
    * Public function to notify the parser component to reset the form
    */
   public notifyFormChanged() {
-    this.createForm(this.jsonForm);
+    if (this.jsonForm) {
+      this.createPages(this.jsonForm.pages);
+    }
   }
 
   /**
@@ -40,7 +51,6 @@ export class GodzillaFormsParserComponent implements OnChanges {
    */
   public validate() {
     this.submitted = true;
-    console.log(this.form.errors);
     if (this.form.valid) {
       this.validData.emit(this.form.getRawValue());
     }
@@ -58,24 +68,43 @@ export class GodzillaFormsParserComponent implements OnChanges {
 
   /**
    * Internal function to build the dynamic form
-   * @param controls: GodzillaFormControls[]
+   * @param pages: GodzillaFormPage[]
    * @private
    */
-  private createForm(controls: GodzillaFormControls[]) {
+  private createPages(pages: GodzillaFormPage[]) {
+    // eslint-disable-next-line no-restricted-syntax
+    for (const page of pages) {
+      // eslint-disable-next-line no-continue
+      if (this.jsonForm?.style.type === GodzillaFormType.classic) {
+        this.createForm(page.controls, this.form);
+      } else {
+        const group = this.formBuilder.group({});
+        this.form.addControl(page.id, group);
+      }
+    }
+  }
+
+  /**
+   * Internal function to build the dynamic form
+   * @param controls: GodzillaFormControls[]
+   * @param group: Form Group to add the controls to.
+   * @private
+   */
+  private createForm(controls: GodzillaFormControls[], group: FormGroup): FormGroup {
     // eslint-disable-next-line no-restricted-syntax
     for (const control of controls) {
       // eslint-disable-next-line no-continue
       if (control.type === GodzillaItemTypes.heading) continue;
       const validatorsToAdd = controlValidators(control);
-      console.log(validatorsToAdd);
       if (control.value.valueSource === GodzillaValueSource.service) {
         this.getDataFromService(control, control.value.serviceName);
       }
-      this.form.addControl(
+      group.addControl(
         control.id,
         this.formBuilder.control(control.value.defaultValue, validatorsToAdd),
       );
     }
+    return group;
   }
 
   /**
