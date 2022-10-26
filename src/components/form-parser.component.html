@@ -1,5 +1,5 @@
-<div [formGroup]="form" class="row needs-validation">
-	<div *ngFor="let page of jsonForm?.pages" class="row">
+<div [formGroup]="formGroup" class="row needs-validation">
+	<div *ngFor="let page of form?.pages" class="row">
 		<div *ngFor="let control of page.controls" [class]="getCssClass(control)">
 			<div
 				*ngIf="isFlowValid(control)"
@@ -54,7 +54,7 @@
 		</div>
 	</div>
 	<godzilla-forms-button-controller
-		*ngIf="jsonForm?.style?.showSubmitButton"
+		*ngIf="form?.style?.showSubmitButton"
 		(onClick)="validate()"
-		[label]="jsonForm?.style?.submitLabel"></godzilla-forms-button-controller>
+		[label]="form?.style?.submitLabel"></godzilla-forms-button-controller>
 </div>

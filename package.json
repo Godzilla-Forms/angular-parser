@@ -1,6 +1,6 @@
 {
   "name": "@godzilla-forms/angular-parser",
-  "version": "0.0.11",
+  "version": "0.0.14",
   "description": "Godzilla Forms parser library for angular",
   "private": false,
   "publishConfig": {
@@ -30,7 +30,7 @@
     "@angular/common": "^14.0.0",
     "@angular/core": "^14.0.0",
     "@angular/forms": "^14.0.0",
-    "@godzilla-forms/core": "^0.0.9",
+    "@godzilla-forms/core": "^0.0.12",
     "rxjs": "~7.5.7"
   },
   "devDependencies": {

@@ -35,6 +35,14 @@ import { ButtonControllerComponent } from './components/controller/button/button
 })
 export class GodzillaParserModule {
 	public static forRoot(config?: GodzillaOptions): ModuleWithProviders<GodzillaParserModule> {
+		return this.getConfig(config);
+	}
+
+	public static forChild(config?: GodzillaOptions): ModuleWithProviders<GodzillaParserModule> {
+		return this.getConfig(config);
+	}
+
+	private static getConfig(config?: GodzillaOptions) {
 		return {
 			ngModule: GodzillaParserModule,
 			providers: [
@@ -43,13 +51,6 @@ export class GodzillaParserModule {
 					useValue: config,
 				},
 			],
-		};
-	}
-
-	public static forChild(): ModuleWithProviders<GodzillaParserModule> {
-		return {
-			ngModule: GodzillaParserModule,
-			providers: [],
 		};
 	}
 }

@@ -24,7 +24,11 @@ export class ErrorControllerComponent implements OnInit {
 		this.form = <FormGroup>this.controlContainer.control;
 	}
 
-	getFormController() {
-		return this.form.get(this.controlName)!!;
+	get errorList() {
+		const errors = this.form.get(this.controlName)?.errors;
+		if (errors) {
+			return errors;
+		}
+		return [];
 	}
 }

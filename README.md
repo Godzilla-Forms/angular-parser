@@ -1,6 +1,6 @@
 <p align="center">
   <a href="">
-    <img alt="docsify" src="https://avatars.githubusercontent.com/u/114390448" style="width: 150px">
+    <img alt="godzilla" src="https://user-images.githubusercontent.com/4659608/197927721-8e3a85ca-4c4b-4a26-88c1-2143839508f2.png" style="width: 350px">
   </a>
 </p>
 

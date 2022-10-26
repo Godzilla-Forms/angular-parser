@@ -17,7 +17,9 @@ import { controlCssClass, controlFlow, controlValidators } from '../utils/contro
 	styleUrls: [],
 })
 export class GodzillaFormsParserComponent implements OnChanges {
-	@Input() jsonForm: GodzillaForm | undefined;
+	@Input() form: GodzillaForm | undefined;
+
+	@Input() jsonForm: string | undefined;
 
 	@Input() enableGridSystem: boolean = true;
 
@@ -25,14 +27,15 @@ export class GodzillaFormsParserComponent implements OnChanges {
 
 	submitted = false;
 
-	readonly form: FormGroup = this.formBuilder.group({});
+	readonly formGroup: FormGroup = this.formBuilder.group({});
 
 	constructor(private formBuilder: FormBuilder, private godzillaLoader: GodzillaLoaderService) {}
 
 	// eslint-disable-next-line @typescript-eslint/no-unused-vars
 	ngOnChanges(changes: SimpleChanges) {
-		if (this.jsonForm) {
-			this.createPages(this.jsonForm.pages);
+		if (this.form || this.jsonForm) {
+			this.form = this.form || (JSON.parse(this.jsonForm || '') as GodzillaForm);
+			this.createPages(this.form.pages);
 		}
 	}
 
@@ -40,8 +43,8 @@ export class GodzillaFormsParserComponent implements OnChanges {
 	 * Public function to notify the parser component to reset the form
 	 */
 	public notifyFormChanged() {
-		if (this.jsonForm) {
-			this.createPages(this.jsonForm.pages);
+		if (this.form) {
+			this.createPages(this.form.pages);
 		}
 	}
 
@@ -51,8 +54,8 @@ export class GodzillaFormsParserComponent implements OnChanges {
 	 */
 	public validate() {
 		this.submitted = true;
-		if (this.form.valid) {
-			this.validData.emit(this.form.getRawValue());
+		if (this.formGroup.valid) {
+			this.validData.emit(this.formGroup.getRawValue());
 		}
 	}
 
@@ -63,7 +66,7 @@ export class GodzillaFormsParserComponent implements OnChanges {
 	 * @private
 	 */
 	getFormControllerById(id: string) {
-		return this.form.get(id);
+		return this.formGroup.get(id);
 	}
 
 	/**
@@ -75,11 +78,11 @@ export class GodzillaFormsParserComponent implements OnChanges {
 		// eslint-disable-next-line no-restricted-syntax
 		for (const page of pages) {
 			// eslint-disable-next-line no-continue
-			if (this.jsonForm?.style.type === GodzillaFormType.classic) {
-				this.createForm(page.controls, this.form);
+			if (this.form?.style.type === GodzillaFormType.classic) {
+				this.createForm(page.controls, this.formGroup);
 			} else {
 				const group = this.formBuilder.group({});
-				this.form.addControl(page.id, group);
+				this.formGroup.addControl(page.id, group);
 			}
 		}
 	}
