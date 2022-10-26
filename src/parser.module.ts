@@ -15,6 +15,7 @@ import {
 	UploadControllerComponent,
 } from './components/controller';
 import { ButtonControllerComponent } from './components/controller/button/button-controller.component';
+import {GodzillaFormService} from "./utils/services/http.service";
 
 @NgModule({
 	imports: [CommonModule, FormsModule, ReactiveFormsModule],
@@ -31,7 +32,7 @@ import { ButtonControllerComponent } from './components/controller/button/button
 		UploadControllerComponent,
 	],
 	exports: [GodzillaFormsParserComponent],
-	providers: [GodzillaLoaderService],
+	providers: [GodzillaLoaderService, GodzillaFormService],
 })
 export class GodzillaParserModule {
 	public static forRoot(config?: GodzillaOptions): ModuleWithProviders<GodzillaParserModule> {
